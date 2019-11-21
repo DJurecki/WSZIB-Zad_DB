@@ -28,13 +28,12 @@ public class GameRepository {
             preparedStatement.setString(2, game.getTitle());
             preparedStatement.setString(3, game.getPublisher());
             preparedStatement.executeUpdate();
-        }
-        catch (SQLException e){
+        } catch (SQLException e){
             e.printStackTrace();
         }
     }
 
-    public static Game getGame(String title, String publisher){
+    public static Game getGame(String title){
         String sqlSelect = "Select * FROM game WHERE title = ?";
         try {
             PreparedStatement preparedStatement = GameRepository.connection.prepareStatement(sqlSelect);
@@ -55,20 +54,18 @@ public class GameRepository {
         return null;
     }
 
-    public static void deleteGame(int id , String title , String publisher){
-        String sqlDelete = "Delete FROM game WHERE id = ? AND title = ? AND publisher = ?";
+    public static void deleteGame(String title){
+        String sqlDelete = "Delete FROM game WHERE title = ?";
 
         try {
             PreparedStatement preparedStatement = GameRepository.connection.prepareStatement(sqlDelete);
-            preparedStatement.setInt(1, id);
-            preparedStatement.setString(2, title);
-            preparedStatement.setString(3, publisher);
+            preparedStatement.setString(1, title);
             preparedStatement.executeUpdate();
-        }
-        catch (SQLException e){
+        } catch (SQLException e){
             e.printStackTrace();
         }
     }
+
 
     public static void updateGame(String title, String publisher){
         String sqlUpdate = "Update game SET title = ?, publisher = ? WHERE title = ? AND publisher = ?";
@@ -85,13 +82,8 @@ public class GameRepository {
             preparedStatement.setString(3, title);
             preparedStatement.setString(4, publisher);
             preparedStatement.executeUpdate();
-
-        }
-        catch (SQLException e){
+        } catch (SQLException e){
             e.printStackTrace();
         }
-
-
     }
-
 }

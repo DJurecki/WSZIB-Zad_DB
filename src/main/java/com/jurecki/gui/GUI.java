@@ -30,21 +30,21 @@ public class GUI {
             Scanner scanner = new Scanner(System.in);
             switch (choice){
                 case 1:
-                    Game game = getGameProperties();
-                    game = GameRepository.getGame(game.getTitle(), game.getPublisher());
+                    Game game = getGameProperty();
+                    game = GameRepository.getGame(game.getTitle());
                     System.out.println(game);
                     break;
                 case 2:
-                    Game game1 = getGameProperties();
+                    Game game1 = getAllGameProperties();
                     GameRepository.addGame(game1);
                     break;
                 case 3:
-                    Game game2 = getGameProperties();
+                    Game game2 = getAllGameProperties();
                     GameRepository.updateGame(game2.getTitle(), game2.getPublisher());
                     break;
                 case 4:
-                    Game game3 = getGameProperties();
-                    GameRepository.deleteGame(game3.getId(), game3.getTitle(), game3.getPublisher());
+                    Game game3 = getGameProperty();
+                    GameRepository.deleteGame(game3.getTitle());
                     break;
                 case 5:
                     return;
@@ -52,11 +52,10 @@ public class GUI {
         }
     }
 
-    private static Game getGameProperties(){
+    private static Game getAllGameProperties(){
 
         Scanner scanner = new Scanner(System.in);
         Game game = new Game();
-
         System.out.println("Enter id: ");
         game.setId(scanner.nextInt());
         scanner.nextLine();
@@ -64,6 +63,14 @@ public class GUI {
         game.setTitle(scanner.nextLine());
         System.out.println("Enter publisher: ");
         game.setPublisher(scanner.nextLine());
+        return game;
+    }
+
+    private static Game getGameProperty(){
+        Scanner scanner = new Scanner(System.in);
+        Game game = new Game();
+        System.out.println("Enter game title: ");
+        game.setTitle(scanner.nextLine());
 
         return game;
     }
