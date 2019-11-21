@@ -67,8 +67,8 @@ public class GameRepository {
     }
 
 
-    public static void updateGame(String title, String publisher){
-        String sqlUpdate = "Update game SET title = ?, publisher = ? WHERE title = ? AND publisher = ?";
+    public static void updateGame(String title){
+        String sqlUpdate = "Update game SET title = ?, publisher = ? WHERE title = ?";
 
         try{
             PreparedStatement preparedStatement = GameRepository.connection.prepareStatement(sqlUpdate);
@@ -80,7 +80,6 @@ public class GameRepository {
             preparedStatement.setString(1 , updatedTitle);
             preparedStatement.setString(2 , updatedPublisher);
             preparedStatement.setString(3, title);
-            preparedStatement.setString(4, publisher);
             preparedStatement.executeUpdate();
         } catch (SQLException e){
             e.printStackTrace();

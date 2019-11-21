@@ -39,8 +39,8 @@ public class GUI {
                     GameRepository.addGame(game1);
                     break;
                 case 3:
-                    Game game2 = getAllGameProperties();
-                    GameRepository.updateGame(game2.getTitle(), game2.getPublisher());
+                    Game game2 = getGameProperty();
+                    GameRepository.updateGame(game2.getTitle());
                     break;
                 case 4:
                     Game game3 = getGameProperty();
